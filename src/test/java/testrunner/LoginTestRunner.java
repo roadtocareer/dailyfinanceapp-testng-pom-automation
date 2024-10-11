@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class LoginTestRunner extends Setup {
     LoginPage loginPage;
-    @Test(priority = 1, description = "Admin login with wrong creds", enabled = true)
+    @Test(priority = 1, description = "Admin login with wrong creds", groups="smoke")
     public void adminLoginWithWrongCreds() throws InterruptedException {
         loginPage=new LoginPage(driver);
         loginPage.doLogin("admin@test.com","wrongpass");
@@ -27,7 +27,7 @@ public class LoginTestRunner extends Setup {
         Assert.assertTrue(errorMessageActual.contains(errorMessageExpected));
         clearCreds();
     }
-    @Test(priority = 2, description = "Admin login with right creds", enabled = true)
+    @Test(priority = 2, description = "Admin login with right creds", groups = "smoke")
     public void adminLogin(){
         loginPage=new LoginPage(driver);
         loginPage.doLogin("admin@test.com","admin123");
@@ -49,6 +49,7 @@ public class LoginTestRunner extends Setup {
         loginPage.doLogin(email,password);
         Assert.assertTrue(loginPage.btnProfileIcon.isDisplayed());
         loginPage.doLogout();
+
     }
     public void clearCreds(){
         loginPage =new LoginPage(driver);

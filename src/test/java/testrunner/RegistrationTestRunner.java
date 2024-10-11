@@ -6,7 +6,6 @@ import config.UserModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -19,7 +18,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class RegistrationTestRunner extends Setup {
-    @Test(priority = 1, description = "User can register by providing all info")
+    @Test(priority = 1, description = "User can register by providing all info", groups = "smoke")
     public void userRegByAllFields() throws InterruptedException, IOException, ParseException {
         RegistrationPage userReg=new RegistrationPage(driver);
         Faker faker=new Faker();

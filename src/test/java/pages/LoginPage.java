@@ -26,6 +26,7 @@ public class LoginPage {
         txtEmail.sendKeys(email);
         txtPassword.sendKeys(password);
         btnLogin.click();
+        //doLogout();
     }
     public void doLogout(){
         btnProfileIcon.click();
