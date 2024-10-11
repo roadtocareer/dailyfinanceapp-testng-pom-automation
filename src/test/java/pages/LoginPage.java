@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class LoginPage {
     @FindBy(id="email")
     public WebElement txtEmail;
@@ -12,6 +14,10 @@ public class LoginPage {
     public WebElement txtPassword;
     @FindBy(name = "login")
     public WebElement btnLogin;
+    @FindBy(css = "[data-testid=AccountCircleIcon]")
+    public WebElement btnProfileIcon;
+    @FindBy(css = "[role=menuitem]")
+    public List<WebElement> btnProfileMenuItems;
 
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -20,6 +26,11 @@ public class LoginPage {
         txtEmail.sendKeys(email);
         txtPassword.sendKeys(password);
         btnLogin.click();
+        //doLogout();
+    }
+    public void doLogout(){
+        btnProfileIcon.click();
+        btnProfileMenuItems.get(1).click();
     }
 
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import config.UserModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,18 +28,18 @@ public class RegistrationPage {
     @FindBy(css = "[type=checkbox]")
     WebElement chkAcceptTerms;
     @FindBy(id="register")
-    WebElement btnSubmitReg;
+    public WebElement btnSubmitReg;
 
     public RegistrationPage(WebDriver driver){
         PageFactory.initElements(driver,this);
     }
-    public void doRegistration(String firstname, String lastname, String email, String password, String phonenumber, String address){
-        txtFirstname.sendKeys(firstname);
-        txtLastname.sendKeys(lastname);
-        txtEmail.sendKeys(email);
-        txtPassword.sendKeys(password);
-        txtPhoneNumber.sendKeys(phonenumber);
-        txtAddress.sendKeys(address);
+    public void doRegistration(UserModel userModel){
+        txtFirstname.sendKeys(userModel.getFirstname());
+        txtLastname.sendKeys(userModel.getLastname()!=null?userModel.getLastname():"");
+        txtEmail.sendKeys(userModel.getEmail());
+        txtPassword.sendKeys(userModel.getPassword());
+        txtPhoneNumber.sendKeys(userModel.getPhonenumber());
+        txtAddress.sendKeys(userModel.getAddress()!=null?userModel.getAddress():"");
         rbGender.get(0).click();
         chkAcceptTerms.click();
         btnSubmitReg.click();

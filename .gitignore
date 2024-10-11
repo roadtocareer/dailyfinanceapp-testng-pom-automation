@@ -5,7 +5,8 @@ build/
 !**/src/test/**/build/
 .idea
 logs
-
+allure-report
+allure-results
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
