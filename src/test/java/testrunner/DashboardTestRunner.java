@@ -5,6 +5,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -13,6 +15,7 @@ import pages.LoginPage;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Duration;
 
 public class DashboardTestRunner extends Setup {
     @BeforeTest
@@ -38,7 +41,8 @@ public class DashboardTestRunner extends Setup {
         DashboardPage dashboardPage=new DashboardPage(driver);
         dashboardPage.btnAddCost.click();
         dashboardPage.addCost("Item 1","50");
-        Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
     }
 }

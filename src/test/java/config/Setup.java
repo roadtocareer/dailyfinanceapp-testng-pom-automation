@@ -2,6 +2,7 @@ package config;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -11,7 +12,9 @@ public class Setup {
     public WebDriver driver;
     @BeforeTest(groups = "smoke")
     public void setup(){
-        driver=new ChromeDriver();
+        ChromeOptions options=new ChromeOptions();
+        options.addArguments("--headed");
+        driver=new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("https://dailyfinance.roadtocareer.net/");
