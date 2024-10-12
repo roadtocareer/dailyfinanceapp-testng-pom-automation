@@ -18,6 +18,7 @@
 - ``` allure generate allure-results --clean -output ```
    ``` allure serve allure-results ```
 
+
 ![image](https://github.com/user-attachments/assets/418ce0e7-82cd-465a-80dc-2147ddc152e6)
 
 ![image](https://github.com/user-attachments/assets/3aa346d1-ab2e-4a72-9244-220362ce97f7)
