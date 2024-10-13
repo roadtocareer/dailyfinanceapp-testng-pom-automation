@@ -12,7 +12,7 @@ public class RegistrationPage {
     @FindBy(tagName = "a")
     public WebElement btnRegister;
     @FindBy(id = "firstName")
-    WebElement txtFirstname;
+    public WebElement txtFirstname;
     @FindBy(id = "lastName")
     WebElement txtLastname;
     @FindBy(id="email")

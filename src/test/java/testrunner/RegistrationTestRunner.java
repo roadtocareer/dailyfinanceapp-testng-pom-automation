@@ -18,7 +18,16 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class RegistrationTestRunner extends Setup {
-    @Test(priority = 1, description = "User can register by providing all info", groups = "smoke")
+    @Test(priority = 1, description = "Registration without mandatory field")
+    public void userRegByMissingMandatoryFields(){
+        RegistrationPage userReg=new RegistrationPage(driver);
+        userReg.btnRegister.click();
+        userReg.btnSubmitReg.click();
+        String validationError= userReg.txtFirstname.getAttribute("validationMessage");
+        Assert.assertTrue(validationError.contains("Please fill out this field"));
+
+    }
+    @Test(priority = 2, description = "User can register by providing all info", groups = "smoke")
     public void userRegByAllFields() throws InterruptedException, IOException, ParseException {
         RegistrationPage userReg=new RegistrationPage(driver);
         Faker faker=new Faker();
@@ -51,7 +60,7 @@ public class RegistrationTestRunner extends Setup {
         Utils.saveUserInfo("./src/test/resources/users.json",userObj);
         Thread.sleep(5000);
     }
-    @Test(priority = 2, description = "User can register by providing only mandatory info")
+    @Test(priority = 3, description = "User can register by providing only mandatory info")
     public void userRegByMandatoryFields() throws IOException, ParseException, InterruptedException {
         RegistrationPage userReg=new RegistrationPage(driver);
         Faker faker=new Faker();

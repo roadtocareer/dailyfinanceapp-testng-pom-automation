@@ -37,11 +37,14 @@ public class Utils {
 
         //get the authToken from the localstorage
         String authToken = (String) js.executeScript("return window.localStorage.getItem('authToken');");
+        String authTokenData=(String) js.executeScript("return window.localStorage.getItem('authTokenData');");
         System.out.println("Auth Token Retrieved: " + authToken);
+        System.out.println("Auth Token Retrieved: " + authTokenData);
 
         // Save the auth token to a localstorage.json file
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("authToken", authToken);
+        jsonObject.put("authTokenData", authTokenData);
         FileWriter writer=new FileWriter("./src/test/resources/localstorage.json");
         writer.write(jsonObject.toJSONString());
         writer.flush();
@@ -51,9 +54,11 @@ public class Utils {
         JSONParser jsonParser=new JSONParser();
         JSONObject authObj= (JSONObject) jsonParser.parse(new FileReader( "./src/test/resources/localstorage.json"));
         String authToken= authObj.get("authToken").toString();
+        String authTokenData= authObj.get("authTokenData").toString();
         System.out.println(authToken);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.localStorage.setItem('authToken', arguments[0]);", authToken);
+        js.executeScript("window.localStorage.setItem('authTokenData', arguments[0]);", authTokenData);
         Thread.sleep(2000);
     }
 
